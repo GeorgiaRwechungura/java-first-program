@@ -16,7 +16,7 @@ public class SavingsCalculator {
     private float sumOfCredits(){
         float sum=0.0f;
         for(int i=0; i<credits.length; i++){
-            sum+=i;
+            sum+=credits[i];
         }
         return sum;
 
@@ -24,7 +24,7 @@ public class SavingsCalculator {
     private float sumOfDebits(){
         float sum=0.0f;
         for(int i=0; i<debits.length; i++){
-            sum+=i;
+            sum+=debits[i];
         }
         return  sum;
 
