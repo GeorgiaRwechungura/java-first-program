@@ -1,6 +1,8 @@
+import java.util.Arrays;
 import java.util.Map;
 import com.h2.BestLoanRates;
 import com.h2.MortgageCalculator;
+import com.h2.SavingsCalculator;
 
 public class Finance {
     public static final String BEST_LOAN_RATES="bestLoanRates";
@@ -32,7 +34,10 @@ public class Finance {
                System.out.println("Finding best loan rates ...");
                BestLoanRates.main(arguments);
                return;
-
+           case SAVINGS_CALCULATOR:
+               System.out.println("Finding your net savings ...");
+               SavingsCalculator.main(arguments);
+               return;
            case MORTGAGE_CALCULATOR:
                System.out.println("Finding your monthly payment ...");
                MortgageCalculator.main(arguments);
@@ -43,7 +48,7 @@ public class Finance {
    }
     public static void main(String[] args){
        String command=args[0];
-       if(!(commandsToUsage.containsKey(command))){
+       if(!commandsToUsage.containsKey(command)){
            System.out.println(command + ": command not found" );
            return;
        }
@@ -55,7 +60,7 @@ public class Finance {
 
         }
 
-        executeCommand(command,args);
+        executeCommand(command, Arrays.copyOfRange(args,1,args.length));
 
     }
 }
