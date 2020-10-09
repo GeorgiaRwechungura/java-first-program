@@ -8,6 +8,37 @@ public class SavingsCalculator {
     private float[] credits;
     private float[] debits;
 
+    public SavingsCalculator(float[] credits, float[] debits){
+        this.credits=credits;
+        this.debits=debits;
+
+    }
+    private float sumOfCredits(){
+        float sum=0.0f;
+        for(int i=0; i<credits.length; i++){
+            sum+=i;
+        }
+        return sum;
+
+    }
+    private float sumOfDebits(){
+        float sum=0.0f;
+        for(int i=0; i<debits.length; i++){
+            sum+=i;
+        }
+        return  sum;
+
+    }
+    private  static  int remainingDaysInMonth(LocalDate date){
+        YearMonth yearMonth=YearMonth.of(date.getYear(), date.getMonth());
+        int totalDaysInMonth=yearMonth.lengthOfMonth();
+        int remainingDays=totalDaysInMonth-date.getDayOfMonth();
+       return  remainingDays;
+    }
+    public float calculate(){
+       return sumOfCredits()-sumOfDebits();
+    }
+
     public static void main(String[] args){
         String[] creditsAsString=args[0].split(",");
         String[] debitsAsString=args[1].split(",");
@@ -26,37 +57,6 @@ public class SavingsCalculator {
         System.out.println("Net Savings = "+ netSaving +", " +
                 " remaining days in month = "+remainingDaysInMonth(LocalDate.now()));
 
-    }
-
-    public SavingsCalculator(float[] credits, float[] debits){
-        this.credits=credits;
-        this.debits=debits;
-
-    }
-    private float sumOfCredits(){
-        float sum=0.0f;
-        for(int i=1; i<=credits.length; i++){
-            sum+=i;
-        }
-        return sum;
-
-    }
-    private float sumOfDebits(){
-        float sum=0.0f;
-        for(int i=1; i<=debits.length; i++){
-            sum=+i;
-        }
-        return  sum;
-
-    }
-    private  static  int remainingDaysInMonth(LocalDate date){
-        YearMonth yearMonth=YearMonth.of(date.getYear(), date.getMonth());
-        int totalDaysInMonth=yearMonth.lengthOfMonth();
-        int remainingDays=totalDaysInMonth-date.getDayOfMonth();
-       return  remainingDays;
-    }
-    public float calculate(){
-       return sumOfCredits()-sumOfDebits();
     }
 
 
