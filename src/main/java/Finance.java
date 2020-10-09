@@ -1,9 +1,9 @@
 import java.util.Map;
 
 public class Finance {
-    public final String BEST_LOAN_RATES="bestLoanRates";
-    public final String SAVINGS_CALCULATOR="savingsCalculator";
-    public final String MORTGAGE_CALCULATOR="mortgageCalculator";
+    public static final String BEST_LOAN_RATES="bestLoanRates";
+    public static final String SAVINGS_CALCULATOR="savingsCalculator";
+    public static final String MORTGAGE_CALCULATOR="mortgageCalculator";
     public static final Map<String, String>
             map=Map.of( BEST_LOAN_RATES, "usage: bestLoanRates",
             SAVINGS_CALCULATOR, "usage: savingsCalculator <credits separated by ','> <debits separated by ','>",
@@ -12,9 +12,14 @@ public class Finance {
 
    private static boolean validateCommandArguments(String args){
        switch (args){
-           case BEST_LOAN_RATES
-               return args.length
+           case BEST_LOAN_RATES:
+               return args.length()==1;
 
+           case SAVINGS_CALCULATOR:
+               return  args.length()==3;
+
+           case MORTGAGE_CALCULATOR:
+               return args.length()==4;
        }
        return  false;
 
