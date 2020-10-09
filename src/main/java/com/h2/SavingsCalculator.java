@@ -11,10 +11,20 @@ public class SavingsCalculator {
     public static void main(String[] args){
         String[] creditsAsString=args[0].split(",");
         String[] debitsAsString=args[1].split(",");
-        //float[] credits=new float[];
+        final float[] credits=new float[creditsAsString.length];
+        final float[] debits=new float[debitsAsString.length];
+
         for(int i=0; i<creditsAsString.length; i++){
+            credits[i]=Float.parseFloat(creditsAsString[i]);
 
         }
+        for(int i=0; i<debitsAsString.length; i++){
+            debits[i]=Float.parseFloat(debitsAsString[i]);
+        }
+        final SavingsCalculator calculator=new SavingsCalculator(credits,debits);
+        float netSaving=calculator.calculate();
+        System.out.println("Net saving = "+ netSaving +", " +
+                "remaining days in months = "+remainingDaysInMonth(LocalDate.now()));
 
     }
 
@@ -40,7 +50,7 @@ public class SavingsCalculator {
 
     }
     private  static  int remainingDaysInMonth(LocalDate date){
-        YearMonth yearMonth=YearMonth.of(2020, Month.OCTOBER);
+        YearMonth yearMonth=YearMonth.of(date.getYear(), date.getMonth());
         int totalDaysInMonth=yearMonth.lengthOfMonth();
         int remainingDays=totalDaysInMonth-date.getDayOfMonth();
        return  remainingDays;
@@ -48,5 +58,6 @@ public class SavingsCalculator {
     public float calculate(){
        return sumOfCredits()-sumOfDebits();
     }
+
 
 }
